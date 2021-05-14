@@ -1,0 +1,8 @@
+.person_item {
+  margin: 15px 0;
+}
+
+.person_item__inner {
+  border: 2px solid #eeeeee;
+  padding: 10px;
+}

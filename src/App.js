@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import NewPerson from "./components/NewPerson/NewPerson";
+import PersonList from "./components/Persons/PersonList";
+import Container from "./components/UI/Container/Container";
+
+const persons = [
+  { name: "Jonh1", age: 20, id: 1 },
+  { name: "Jonh2", age: 22, id: 2 },
+  { name: "Jonh3", age: 23, id: 3 },
+];
+
 
 function App() {
+  const [appPersons, setAppPersons] = useState(persons);
+
+  const addNewPerson = (newPerson) => {
+    setAppPersons((prevPersons) => {
+      const nextId = Math.max(prevPersons.map((person) => person.id)) + 1;
+
+      return [{ ...newPerson, id: nextId }, ...prevPersons];
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <NewPerson onPersonAdded={addNewPerson} />
+      <PersonList persons={appPersons} />
+    </Container>
   );
 }
 

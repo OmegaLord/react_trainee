@@ -1,0 +1,10 @@
+label {
+  display: block;
+}
+
+input {
+  padding: 5px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
